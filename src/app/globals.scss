@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+
+* {
+    font-family: 'Staatliches', cursive;
+}
+
+$base-color: #202020;
+$border-dark: rgba($base-color, 0.88);
+$royal-purple: #7C4C95;
+$asparagus: #65944C;
+$rose-quartz: #EAE4E6;
+$red: #F12F26;
+$blue: #0952BB;
+$white: #E2DCCE;
+$black: #131418;
+
+body {
+    color: rgb(var(--foreground-rgb));
+    // background: $base-color;
+    background: $black;
+    // background: #E2DCCE;
+    text-align: center;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
+main {
+    width: 90vw;
+    // background-color: red;
+}

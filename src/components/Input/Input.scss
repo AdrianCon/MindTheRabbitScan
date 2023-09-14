@@ -1,0 +1,27 @@
+@import '../../app/globals.scss';
+
+.input {
+    --input-focus: $blue;
+    --font-color: #323232;
+    --font-color-sub: #666;
+    width: 60%;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid #666;
+    background-color: $black;
+    // box-shadow: 4px 4px $rose-quartz;
+    font-size: 15px;
+    font-weight: 600;
+    color: $rose-quartz;
+    padding: 5px 10px;
+    outline: none;
+  }
+  
+  .input::placeholder {
+    color: #666;
+    opacity: 0.8;
+  }
+  
+  .input:focus {
+    border: 2px solid $rose-quartz;
+  }
