@@ -1,7 +1,7 @@
 import './Code.scss'
 import { CopyBlock } from "react-code-blocks";
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { darcula } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 export default function Code({code}: any){
     let myMap = new Map(Object.entries(JSON.parse(code)));
@@ -27,24 +27,13 @@ export default function Code({code}: any){
         //     </pre>
         // </div>
 
-        // <div style={{width: '40vw', flexDirection: 'row'}}>
-            // <CopyBlock
-            //     text={code}
-            //     language='javascript'
-            //     showLineNumbers
-            //     wrapLines
-            //     theme={dracula}
-            //     customStyle={{
-            //         maxWidth: '300px'
-            //     }}
-            // />
-        // </div>
-        <div style={{maxWidth: '80%', overflow: 'clip'}}>
+        <div style={{maxWidth: '70%', maxHeight:'500px',overflow: 'scroll', marginBottom: '200px'}}>
             <SyntaxHighlighter
                 language='json'
-                style={dark}
+                style={darcula}
                 wrapLines={true}
                 wrapLongLines
+                className='code'
             >
                 {code}
             </SyntaxHighlighter>
