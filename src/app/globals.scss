@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
 
 * {
-    font-family: 'Staatliches', cursive;
+    font-family: 'Staatliches';
 }
 
 $base-color: #202020;
@@ -15,7 +15,7 @@ $white: #E2DCCE;
 $black: #131418;
 
 body {
-    color: rgb(var(--foreground-rgb));
+    color: $white;
     // background: $base-color;
     background: $black;
     // background: #E2DCCE;

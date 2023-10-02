@@ -14,14 +14,14 @@ interface SelectProps {
 
 export default function Select({label, onChange}: SelectProps){
     return (
-        <>
-        <p style={{marginRight: '20px'}}>{label}</p>
+        <div className='selector'>
+        <p className='label' style={{marginRight: '20px'}}>{label}</p>
         <select className="select" onChange={onChange}>
             <option value={Flags.scanSYN.value}>{Flags.scanSYN.label}</option> 
             <option value={Flags.scanVersion.value}>{Flags.scanVersion.label}</option> 
             <option value={Flags.scanTCP.value}>{Flags.scanTCP.label}</option> 
             <option value={Flags.scanUDP.value}>{Flags.scanUDP.label}</option> 
         </select> 
-       </>
+       </div>
     )
 }

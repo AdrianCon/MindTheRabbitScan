@@ -1,12 +1,25 @@
 @import '../../app/globals.scss';
 
+.selector{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 .select{
-    width: 10vw;
+    width: 200px;
     height: 5vh;
 }
 
-p{
+.label{
     font-size: x-large;
     font-weight: bold;
     color: $rose-quartz;
+}
+
+@media only screen and (min-width: 600px) {
+    .selector {
+        flex-direction: row;
+    }
 }
