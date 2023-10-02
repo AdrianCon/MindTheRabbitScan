@@ -1,11 +1,12 @@
 import './Select.scss'
 
-const Flags = {
-    scanSYN: {label: 'SYN Scan', value: '-sS'},
-    scanVersion: {label: 'Version Scan', value: '-sV'},
-    scanTCP: {label: 'TCP Connect Scan', value: '-sT'},
-    scanUDP: {label: 'UDP Scan', value: '-sU'},
-}
+const Flags = [
+    {label: 'SYN Scan', value: '-sS'},
+    {label: 'Version Scan', value: '-sV'},
+    {label: 'TCP Connect Scan', value: '-sT'},
+    {label: 'UDP Scan', value: '-sU'},
+    {label: 'Custom', value: ''},
+]
 
 interface SelectProps {
     label: string;
@@ -14,14 +15,13 @@ interface SelectProps {
 
 export default function Select({label, onChange}: SelectProps){
     return (
-        <>
-        <p style={{marginRight: '20px'}}>{label}</p>
+        <div className='selector'>
+        <p className='label' style={{marginRight: '20px'}}>{label}</p>
         <select className="select" onChange={onChange}>
-            <option value={Flags.scanSYN.value}>{Flags.scanSYN.label}</option> 
-            <option value={Flags.scanVersion.value}>{Flags.scanVersion.label}</option> 
-            <option value={Flags.scanTCP.value}>{Flags.scanTCP.label}</option> 
-            <option value={Flags.scanUDP.value}>{Flags.scanUDP.label}</option> 
+            {Flags.map((flag) => (
+                <option key={flag.value} value={flag.value}>{flag.label}</option>
+            ))}
         </select> 
-       </>
+       </div>
     )
 }

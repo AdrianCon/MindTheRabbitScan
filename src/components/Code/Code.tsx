@@ -6,7 +6,7 @@ import { darcula } from 'react-syntax-highlighter/dist/esm/styles/prism';
 export default function Code({code}: any){
     let myMap = new Map(Object.entries(JSON.parse(code)));
     let jeison = JSON.parse(code)
-    console.log(Object.keys(jeison))
+    // console.log(Object.keys(jeison))
     return (
         // <div
         //     style={{
@@ -27,7 +27,7 @@ export default function Code({code}: any){
         //     </pre>
         // </div>
 
-        <div style={{maxWidth: '70%', maxHeight:'500px',overflow: 'scroll', marginBottom: '200px'}}>
+        <div style={{maxWidth: '100%', maxHeight:'500px', overflowY: 'scroll', marginBottom: '200px'}}>
             <SyntaxHighlighter
                 language='json'
                 style={darcula}

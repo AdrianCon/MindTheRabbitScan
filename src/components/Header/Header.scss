@@ -1,8 +1,8 @@
 @import '../../app/globals.scss';
 
 .glitch {
-    position: absolute;
-    display: inline-block;
+    // position: absolute;
+    // display: inline-block;
     animation: glitch 5s infinite;
 
     @keyframes glitch{
@@ -29,24 +29,8 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    font-size: 100px;
-
-    @for $i from 2 to 3 {
-        :nth-child(#{$i}) { animation-delay: $i * 0.05s; }
-    }
-
-    :nth-child(1) {
-        color: $rose-quartz; /* Change the font color for Element 2 */
-        // color: #131418;
-    }
-    
-    :nth-child(2) {
-        // color: $royal-purple; /* Change the font color for Element 2 */
-        color: $red; /* Change the font color for Element 2 */
-    }
-  
-    :nth-child(3) {
-        // color: $asparagus; /* Change the font color for Element 3 */
-        color: $blue; /* Change the font color for Element 3 */
-    }
+    height: 50vh;
+    font-size: 4em;
+    line-height: 2em;
+    // background-color: red;
 }

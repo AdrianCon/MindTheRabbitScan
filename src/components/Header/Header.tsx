@@ -1,10 +1,17 @@
+import { useEffect, useState } from 'react';
+import GlitchText from '../GlitchText/GlitchText'
+import StairsText from '../StairsText/StairsText'
 import './Header.scss'
 export default function Header(){
+    const randomInt = Math.floor(Math.random() * (2 - 1 + 1) + 1)
+
     return(
         <header className="head">
-            <h1 style={{zIndex: 1000}}>Mind the Rabbit</h1>
-            <h1 className="glitch">Mind the Rabbit</h1>
-            <h1 className="glitch">Mind the Rabbit</h1>
+            {randomInt === 1 ? 
+            <GlitchText />
+            :
+            <StairsText />
+            }
         </header>
     )
 }

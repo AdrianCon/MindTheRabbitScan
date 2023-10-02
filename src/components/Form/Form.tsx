@@ -6,15 +6,18 @@ import Select from '../Select/Select';
 import { wrap } from 'module';
 import ScanLoader from '../ScanLoader/ScanLoader';
 import Code from '../Code/Code';
+import CheckBoxes from '../CheckBoxes/CheckBoxes';
 
 interface nmap{
     ip_address: string;
     scan_type: string;
+    flags: any;
 }
 
 const nmapInitialState: nmap = {
     ip_address: '',
     scan_type: '-sT',
+    flags: [],
 }
 
 export default function Form() {
@@ -36,7 +39,8 @@ export default function Form() {
         };
         setIsLoading(true);
         setResult('');
-        fetch("http://143.198.65.227:5000/scan", requestOptions)
+        // fetch("http://143.198.65.227:5000/scan", requestOptions)
+        fetch("http://127.0.0.1:5000/scan", requestOptions)
         .then(response => response.json())
         .then(result => {
             setResult(JSON.stringify(result,null,2))
@@ -60,31 +64,55 @@ export default function Form() {
         console.log(e.target.value)
         setNmapScan((prev) => ({
             ...prev,
-            scan_type: e.target.value
+            scan_type: e.target.value,
+            flags: prev.scan_type === "" ? [] : prev.flags 
         }))
     }
 
+    const handleCheck = (label?: string, checked?: boolean) => {
+        console.log('is running')
+        if(checked) {
+            const newArr: string[] = nmapScan.flags.filter((flag: string) => flag !== label)
+            setNmapScan((prev) => ({
+                ...prev,
+                flags: newArr
+            }))
+        } else {
+            let arr: string[] = [...nmapScan.flags, label];
+            setNmapScan((prev) => ({
+                ...prev,
+                flags: arr
+            }))
+        }
+    }
+
+    console.log(nmapScan)
     return (
-        <form
-            className='form'
-            onSubmit={e => e.preventDefault()}
-        >
-            <div style={{width: '100%', marginBottom: '5vh', flexWrap: 'wrap'}}>
-                <Input
-                    placeholder="Enter IP or Domain to scan..."
-                    value={nmapScan.ip_address}
-                    onChange={handleDomainChange}
-                />
-                <Button
-                    label={'Scan'}
-                    onClick={handleScanEvent}
-                />
-            </div>
-            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                <Select label={"Scan Type:"}onChange={handleScanTypeChange}/>
-            </div>
-            {isLoading ? <ScanLoader/> : null}
-            {result ? <Code code={result}/> : null}
-        </form>
+        <div style={{display: 'flex', marginTop: '10vh'}}>
+            <form
+                className='form'
+                onSubmit={e => e.preventDefault()}
+            >
+                <div style={{width: '100%', marginBottom: '5vh', flexWrap: 'wrap', gap: '20px'}}>
+                    <Input
+                        placeholder="Enter IP or Domain to scan..."
+                        value={nmapScan.ip_address}
+                        onChange={handleDomainChange}
+                    />
+                    <Button
+                        label={'Scan'}
+                        onClick={handleScanEvent}
+                    />
+                </div>
+                <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '20px 0'}}>
+                    <Select label={"Scan Type:"}onChange={handleScanTypeChange}/>
+                </div>
+                {nmapScan.scan_type === "" ? (
+                    <CheckBoxes onChange={handleCheck} visible={nmapScan.scan_type === "" ? true : false}/>
+                ): null}
+                {isLoading ? <ScanLoader/> : null}
+                {result ? <Code code={result}/> : null}
+            </form>
+        </div>
     )
 }

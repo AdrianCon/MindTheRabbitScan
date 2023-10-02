@@ -1,0 +1,78 @@
+@import '../../app/globals.scss';
+
+.texts {
+    position: relative;
+    height: 40px;
+    line-height: 40px;
+    color: $rose-quartz;
+    font-size: 48px;
+    font-weight: 800;
+    text-transform: uppercase;
+    overflow: hidden;
+    width: fit-content;
+    margin: auto;
+
+    &:nth-child(odd){
+        transform: skew(60deg, -30deg);
+    }
+
+    &:nth-child(even){
+        transform: skew(0, -30deg) scaleY(1.5);
+    }
+
+    &:nth-child(1){
+        left: -50px;
+    }
+
+    &:nth-child(2){
+        top: 10px;
+        left: -15px;
+    }
+    &:nth-child(3){
+        top: 19px;
+        left: 20px;
+    }
+    &:nth-child(4){
+        top: 29px;
+        left: 55px;
+    }
+    &:nth-child(5){
+        top: 38px;
+        left: 90px;
+    }
+}
+
+.content {
+    // background-color: red;
+    height: fit-content;
+    // padding: 15vh;
+    width: 100vw;
+}
+
+.content p {
+    margin: 0;
+    transition: 0.5s ease-in-out;
+    animation: climbing 1s linear infinite;
+}
+
+@keyframes climbing {
+    100% {
+        transform: translate(0, -40px);
+    }
+}
+
+@media only screen and (min-width: 600px) {
+
+}
+
+@media (max-width: 600px) {
+    .texts {
+        font-size: 35px;
+    }
+}
+
+@media (max-width: 500px) {
+    .content {
+        margin-left: -10vw;
+    }
+}

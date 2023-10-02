@@ -1,0 +1,41 @@
+@import '../../app/globals.scss';
+
+.glitch {
+    position: absolute;
+    display: inline-block;
+    animation: none;
+    color: $rose-quartz;
+    // color: #131418;
+
+    &.layer-2 {
+        color: $red; /* Change the font color for Element 2 */
+        // color: $royal-purple; /* Change the font color for Element 2 */
+        animation: glitch 5s infinite 2s alternate-reverse;
+        animation-delay: 2 * 0.05s;
+    }
+
+    &.layer-3 {
+        color: $blue; /* Change the font color for Element 3 */
+        // color: $asparagus; /* Change the font color for Element 3 */
+        animation: glitch 5s infinite 2s alternate-reverse;
+        animation-delay: 3 * 0.05s;
+    }
+
+    @keyframes glitch{
+        0% {
+            transform: translate(0);
+        }
+        0.5% {
+            transform: translate(-5px, 5px);
+        }
+        1.5% {
+            transform: translate(5px, -5px);
+        }
+        2.5% {
+            transform: translate(-5px, 5px);
+        }
+        10% {
+            transform: translate(0);
+        }
+    }
+}
