@@ -1,4 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+// @include font('Staatliches','../styles/fonts/Staatliches-Regular.ttf');
+
+// @font-face {
+//     font-family: "Staatliches";
+//     src: local("Staatliches"),
+//      url("/public/fonts/Staatliches-Regular.ttf") format("truetype");
+//     font-weight:400;
+//    }
 
 * {
     font-family: 'Staatliches';
@@ -24,6 +32,10 @@ body {
     width: 99vw;
     display: flex;
     justify-content: center;
+    margin: 0;
+    padding: 0;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 main {

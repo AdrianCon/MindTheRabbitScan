@@ -39,7 +39,8 @@ export default function Form() {
         };
         setIsLoading(true);
         setResult('');
-        fetch("http://143.198.65.227:5000/scan", requestOptions)
+        // fetch("http://143.198.65.227:5000/scan", requestOptions)
+        fetch("http://127.0.0.1:5000/scan", requestOptions)
         .then(response => response.json())
         .then(result => {
             setResult(JSON.stringify(result,null,2))
@@ -63,7 +64,8 @@ export default function Form() {
         console.log(e.target.value)
         setNmapScan((prev) => ({
             ...prev,
-            scan_type: e.target.value
+            scan_type: e.target.value,
+            flags: prev.scan_type === "" ? [] : prev.flags 
         }))
     }
 
@@ -91,7 +93,7 @@ export default function Form() {
                 className='form'
                 onSubmit={e => e.preventDefault()}
             >
-                <div style={{width: '100%', marginBottom: '5vh', flexWrap: 'wrap'}}>
+                <div style={{width: '100%', marginBottom: '5vh', flexWrap: 'wrap', gap: '20px'}}>
                     <Input
                         placeholder="Enter IP or Domain to scan..."
                         value={nmapScan.ip_address}
@@ -102,10 +104,12 @@ export default function Form() {
                         onClick={handleScanEvent}
                     />
                 </div>
-                <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '20px 0'}}>
                     <Select label={"Scan Type:"}onChange={handleScanTypeChange}/>
                 </div>
-                <CheckBoxes onChange={handleCheck}/>
+                {nmapScan.scan_type === "" ? (
+                    <CheckBoxes onChange={handleCheck} visible={nmapScan.scan_type === "" ? true : false}/>
+                ): null}
                 {isLoading ? <ScanLoader/> : null}
                 {result ? <Code code={result}/> : null}
             </form>

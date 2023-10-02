@@ -10,10 +10,12 @@ def nmap_scan():
     try:
         ip_address = request.json['ip_address']
         scan_type = request.json['scan_type']
+        flags = request.json['flags']
+        flags = " ".join(flags)
         # Create an Nmap scanner
         nm = nmap.PortScanner()
         # Run the Nmap scan
-        scan_results = nm.scan(ip_address, arguments=f"-T4 -F {scan_type}")
+        scan_results = nm.scan(ip_address, arguments=f"-T4 -F {scan_type} {flags}")
         return jsonify(scan_results)
     except Exception as e:
         return jsonify({"error": str(e)})

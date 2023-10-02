@@ -9,6 +9,8 @@
     font-weight: 800;
     text-transform: uppercase;
     overflow: hidden;
+    width: fit-content;
+    margin: auto;
 
     &:nth-child(odd){
         transform: skew(60deg, -30deg);
@@ -42,8 +44,9 @@
 
 .content {
     // background-color: red;
-    height: 20vh;
-    padding: 15vh;
+    height: fit-content;
+    // padding: 15vh;
+    width: 100vw;
 }
 
 .content p {
@@ -55,5 +58,21 @@
 @keyframes climbing {
     100% {
         transform: translate(0, -40px);
+    }
+}
+
+@media only screen and (min-width: 600px) {
+
+}
+
+@media (max-width: 600px) {
+    .texts {
+        font-size: 35px;
+    }
+}
+
+@media (max-width: 500px) {
+    .content {
+        margin-left: -10vw;
     }
 }

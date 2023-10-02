@@ -1,0 +1,33 @@
+div .checkbox-selector-vis {
+    animation: slide-in 0.5s ease-in-out;
+}
+
+div .checkbox-selector-hid {
+    visibility: none;
+    animation: slide-out 0.5s ease-in-out;
+}
+
+// @keyframes slide-in {
+//     0% {
+//       opacity: 0;
+//       transform: translateY(-50%);
+//     }
+//     100% {
+//       opacity: 1;
+//       transform: translateY(0);
+//     }
+//   }
+
+//   @keyframes slide-out {
+//     0% {
+//       opacity: 1;
+//       transform: translateY(0);
+//       visibility: visible;
+//     }
+//     100% {
+//       opacity: 0;
+//       transform: translateY(-50%);
+//       visibility: hidden;
+//       max-height: 0;
+//     }
+//   }
