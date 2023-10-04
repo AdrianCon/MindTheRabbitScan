@@ -7,6 +7,7 @@ import { wrap } from 'module';
 import ScanLoader from '../ScanLoader/ScanLoader';
 import Code from '../Code/Code';
 import CheckBoxes from '../CheckBoxes/CheckBoxes';
+import Summary from '../Summary/Summary';
 
 interface nmap{
     ip_address: string;
@@ -110,6 +111,7 @@ export default function Form() {
                     <CheckBoxes onChange={handleCheck} visible={nmapScan.scan_type === "" ? true : false}/>
                 ): null}
                 {isLoading ? <ScanLoader/> : null}
+                {result ? <Summary data={JSON.parse(result)}/> : null}
                 {result ? <Code code={result}/> : null}
             </form>
         </div>
