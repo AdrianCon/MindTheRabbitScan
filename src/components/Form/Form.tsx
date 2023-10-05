@@ -15,6 +15,11 @@ interface nmap{
     flags: any;
 }
 
+interface error {
+    value: boolean;
+    message: 'string';
+}
+
 const nmapInitialState: nmap = {
     ip_address: '',
     scan_type: '-sT',
@@ -26,7 +31,7 @@ export default function Form() {
     const [result, setResult] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [selectedVis, setSelectedVis] = useState('text');
-    const [error, setError] = useState(false);
+    const [error, setError] = useState({value: false,message: '' });
 
     function validateInput(input: string) {
         const ValidIpAddressRegex = /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/\d{1,2})?$/;
@@ -44,7 +49,7 @@ export default function Form() {
     useEffect(() => {
         const timeId = setTimeout(() => {
           // After 3 seconds set the show value to false
-          setError(false)
+          setError({value: false, message: ''})
         }, 8000)
     
         return () => {
@@ -57,7 +62,7 @@ export default function Form() {
         const validInput = validateInput(nmapScan.ip_address);
         // console.log(validInput)
         if(!validInput) {
-            setError(true)
+            setError({value: true, message: 'Error - Not a domain, IP or IP range!'})
             return
         }
         var myHeaders = new Headers();
@@ -83,6 +88,7 @@ export default function Form() {
         })
         .catch(error => {
             console.log('error', error)
+            setError({value: true, message: error})
             setIsLoading(false);
         });
         // console.log(nmapScan)
@@ -172,7 +178,7 @@ export default function Form() {
                     </div>
 
                 )}
-                {error && (
+                {error.value && (
                     <div
                         style={{
                             position: 'sticky',
@@ -180,7 +186,7 @@ export default function Form() {
                             bottom: '10px'
                         }}
                     >
-                        <Alert severity="error">Error - Not a domain, IP or IP range!</Alert>
+                        <Alert severity="error">{`${error.message}`}</Alert>
                     </div>
                 )}
             </form>
