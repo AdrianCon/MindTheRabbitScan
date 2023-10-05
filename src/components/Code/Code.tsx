@@ -27,7 +27,7 @@ export default function Code({code}: any){
         //     </pre>
         // </div>
 
-        <div style={{maxWidth: '100%', maxHeight:'500px', overflowY: 'scroll', marginBottom: '200px'}}>
+        <div style={{maxWidth: '100%', maxHeight:'500px', overflowY: 'scroll', marginBottom: '20px'}}>
             <SyntaxHighlighter
                 language='json'
                 style={darcula}

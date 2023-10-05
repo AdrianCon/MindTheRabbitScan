@@ -7,7 +7,8 @@ interface SelectProps {
 export default function Summary({data}: SelectProps){
     const {nmap, scan} = data;
     const {scaninfo, scanstats} = nmap;
-    console.log(nmap, scan)
+    console.log('nmap', nmap)
+    console.log('scan', scan)
     const entries = Object.entries(scan)
     console.log('entries', entries)
     console.log(entries?.[0]?.[1])
@@ -39,7 +40,8 @@ export default function Summary({data}: SelectProps){
             {entries?.length > 0 ? (
                 entries.map((info,index) => {
                     const entry = info[1];
-                    const ports = Object.entries(entry?.tcp) ?? Object.entries(entry?.udp);
+                    const protocol = entry?.tcp ?? entry?.udp;
+                    const ports = protocol ? Object.entries(protocol) : null;
                     return(
                     <div key={`Scan_${index}`}>
                         <h3>{`Address: ${entry.addresses?.ipv4}`}</h3>
@@ -47,15 +49,15 @@ export default function Summary({data}: SelectProps){
                         <h3>{`Reason: ${entry.status.reason}`}</h3>
                         <div>
                             <h3>Ports</h3>
-                            {ports.map((port,index) => (
+                            {ports ? ports.map((port,index) => (
                                 <div className='row' key={port?.[0]} style={{gap: '20px'}}>
-                                    <h5>{port?.[0]}</h5>
-                                    <h5>{`Service: ${port?.[1]?.name}`}</h5>
-                                    <h5>{`State: ${port?.[1]?.state}`}</h5>
+                                    <h4>{port?.[0]}</h4>
+                                    <h4>{`Service: ${port?.[1]?.name}`}</h4>
+                                    <h4>{`State: ${port?.[1]?.state}`}</h4>
                                 </div>
                             ))
 
-                            }
+                            :null}
                         </div>
                         <hr className='dashed'/>
                     </div>

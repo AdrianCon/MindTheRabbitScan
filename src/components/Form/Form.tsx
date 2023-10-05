@@ -62,11 +62,13 @@ export default function Form() {
         }
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Access-Control-Allow-Origin", "*");
 
         var raw = JSON.stringify(nmapScan);
 
         var requestOptions: RequestInit = {
         method: 'POST',
+        mode: 'cors',
         headers: myHeaders,
         body: raw,
         redirect: 'follow'
