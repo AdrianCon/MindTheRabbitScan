@@ -126,12 +126,12 @@ export default function Form() {
 
     console.log(nmapScan)
     return (
-        <div style={{display: 'flex', marginTop: '10vh'}}>
+        <div style={{display: 'flex'}}>
             <form
                 className='form'
                 onSubmit={e => e.preventDefault()}
             >
-                <div className='row' style={{width: '100%', marginBottom: '5vh', flexWrap: 'wrap', gap: '20px', justifyContent: 'center', alignItems: 'center'}}>
+                <div className='row' style={{width: '100%', flexWrap: 'wrap', gap: '20px', justifyContent: 'center', alignItems: 'center'}}>
                     <Input
                         placeholder="Enter IP or Domain to scan..."
                         value={nmapScan.ip_address}
