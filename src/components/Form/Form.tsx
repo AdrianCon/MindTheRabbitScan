@@ -25,6 +25,7 @@ export default function Form() {
     const [nmapScan, setNmapScan] = useState<nmap>(nmapInitialState);
     const [result, setResult] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [selectedVis, setSelectedVis] = useState('text');
 
     const handleScanEvent = (e: React.MouseEvent<HTMLButtonElement>) => {
         var myHeaders = new Headers();
@@ -86,6 +87,11 @@ export default function Form() {
         }
     }
 
+    const handleVisSelect = (type: string) => {
+        if(type === 'text') setSelectedVis('text')
+        else setSelectedVis('json')
+    }
+
     console.log(nmapScan)
     return (
         <div style={{display: 'flex', marginTop: '10vh'}}>
@@ -93,7 +99,7 @@ export default function Form() {
                 className='form'
                 onSubmit={e => e.preventDefault()}
             >
-                <div style={{width: '100%', marginBottom: '5vh', flexWrap: 'wrap', gap: '20px'}}>
+                <div className='row' style={{width: '100%', marginBottom: '5vh', flexWrap: 'wrap', gap: '20px', justifyContent: 'center', alignItems: 'center'}}>
                     <Input
                         placeholder="Enter IP or Domain to scan..."
                         value={nmapScan.ip_address}
@@ -104,15 +110,29 @@ export default function Form() {
                         onClick={handleScanEvent}
                     />
                 </div>
-                <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '20px 0'}}>
+                <div className='col' style={{display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '20px 0', gap: '20px'}}>
                     <Select label={"Scan Type:"}onChange={handleScanTypeChange}/>
+                    <div className="visualization">
+                        <button
+                            className={selectedVis === 'text' ? 'selected' : ''}
+                            onClick={() => handleVisSelect('text')}
+                        >
+                            Text
+                        </button>
+                        <button
+                            className={selectedVis === 'json' ? 'selected' : ''}
+                            onClick={() => handleVisSelect('json')}
+                        >
+                            JSON
+                        </button>
+                    </div>
                 </div>
                 {nmapScan.scan_type === "" ? (
                     <CheckBoxes onChange={handleCheck} visible={nmapScan.scan_type === "" ? true : false}/>
                 ): null}
                 {isLoading ? <ScanLoader/> : null}
-                {result ? <Summary data={JSON.parse(result)}/> : null}
-                {result ? <Code code={result}/> : null}
+                {(result && selectedVis === 'text') ? <Summary data={JSON.parse(result)}/> : null}
+                {(result && selectedVis === 'json') ? <Code code={result}/> : null}
             </form>
         </div>
     )
