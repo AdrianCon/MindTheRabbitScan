@@ -1,0 +1,24 @@
+.summary {
+    // background-color: red;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    & h1,h2,h3,h4,h5 {
+        margin:0;
+        width: fit-content;
+    }
+
+    & p {
+        margin:0;
+        text-align: left;
+        word-break: break-all;
+        white-space: normal;
+    }
+}
+
+hr.dashed {
+    border-top: 3px dashed #bbb;
+    border-bottom: none;
+    width: 100%;
+  }

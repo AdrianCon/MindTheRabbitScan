@@ -5,7 +5,7 @@ const Flags = [
     {label: 'Version Scan', value: '-sV'},
     {label: 'TCP Connect Scan', value: '-sT'},
     {label: 'UDP Scan', value: '-sU'},
-    {label: 'Custom', value: ''},
+    // {label: 'Custom', value: ''},
 ]
 
 interface SelectProps {
