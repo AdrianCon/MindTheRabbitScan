@@ -39,9 +39,9 @@ export default function Summary({data}: SelectProps){
             <hr className='dashed'/>
             {entries?.length > 0 ? (
                 entries.map((info,index) => {
-                    const entry = info[1];
+                    const entry: any = info[1];
                     const protocol = entry?.tcp ?? entry?.udp;
-                    const ports = protocol ? Object.entries(protocol) : null;
+                    const ports: any = protocol ? Object.entries(protocol) : null;
                     return(
                     <div key={`Scan_${index}`}>
                         <h3>{`Address: ${entry.addresses?.ipv4}`}</h3>
@@ -49,7 +49,7 @@ export default function Summary({data}: SelectProps){
                         <h3>{`Reason: ${entry.status.reason}`}</h3>
                         <div>
                             <h3>Ports</h3>
-                            {ports ? ports.map((port,index) => (
+                            {ports ? ports.map((port: any,index: number) => (
                                 <div className='row' key={port?.[0]} style={{gap: '20px'}}>
                                     <h4>{port?.[0]}</h4>
                                     <h4>{`Service: ${port?.[1]?.name}`}</h4>
