@@ -8,6 +8,13 @@
     flex-direction: column;
 }
 
+.code-cont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+}
+
 .visualization {
     & button{
         background-color: transparent;

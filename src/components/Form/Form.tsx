@@ -142,29 +142,34 @@ export default function Form() {
                         onClick={handleScanEvent}
                     />
                 </div>
-                <div className='col' style={{display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '20px 0', gap: '20px'}}>
+                <div className='col' style={{display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '20px 0'}}>
                     <Select label={"Scan Type:"}onChange={handleScanTypeChange}/>
-                    <div className="visualization">
-                        <button
-                            className={selectedVis === 'text' ? 'selected' : ''}
-                            onClick={() => handleVisSelect('text')}
-                        >
-                            Text
-                        </button>
-                        <button
-                            className={selectedVis === 'json' ? 'selected' : ''}
-                            onClick={() => handleVisSelect('json')}
-                        >
-                            JSON
-                        </button>
-                    </div>
                 </div>
                 {nmapScan.scan_type === "" ? (
                     <CheckBoxes onChange={handleCheck} visible={nmapScan.scan_type === "" ? true : false}/>
                 ): null}
                 {isLoading ? <ScanLoader/> : null}
-                {(result && selectedVis === 'text') ? <Summary data={JSON.parse(result)}/> : null}
-                {(result && selectedVis === 'json') ? <Code code={result}/> : null}
+                {result && (
+                    <div className='code-cont'>
+                        <div className="visualization">
+                            <button
+                                className={selectedVis === 'text' ? 'selected' : ''}
+                                onClick={() => handleVisSelect('text')}
+                            >
+                                Text
+                            </button>
+                            <button
+                                className={selectedVis === 'json' ? 'selected' : ''}
+                                onClick={() => handleVisSelect('json')}
+                            >
+                                JSON
+                            </button>
+                        </div>
+                        {selectedVis === 'text' ? <Summary data={JSON.parse(result)}/> : null}
+                        {selectedVis === 'json' ? <Code code={result}/> : null}
+                    </div>
+
+                )}
                 {error && (
                     <div
                         style={{
