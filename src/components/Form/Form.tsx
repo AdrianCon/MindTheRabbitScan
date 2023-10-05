@@ -55,7 +55,7 @@ export default function Form() {
 
     const handleScanEvent = (e: React.MouseEvent<HTMLButtonElement>) => {
         const validInput = validateInput(nmapScan.ip_address);
-        console.log(validInput)
+        // console.log(validInput)
         if(!validInput) {
             setError(true)
             return
@@ -85,7 +85,7 @@ export default function Form() {
             console.log('error', error)
             setIsLoading(false);
         });
-        console.log(nmapScan)
+        // console.log(nmapScan)
     }
 
     const handleDomainChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -96,7 +96,7 @@ export default function Form() {
     }
 
     const handleScanTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        console.log(e.target.value)
+        // console.log(e.target.value)
         setNmapScan((prev) => ({
             ...prev,
             scan_type: e.target.value,
@@ -105,7 +105,7 @@ export default function Form() {
     }
 
     const handleCheck = (label?: string, checked?: boolean) => {
-        console.log('is running')
+        // console.log('is running')
         if(checked) {
             const newArr: string[] = nmapScan.flags.filter((flag: string) => flag !== label)
             setNmapScan((prev) => ({
@@ -126,7 +126,7 @@ export default function Form() {
         else setSelectedVis('json')
     }
 
-    console.log(nmapScan)
+    // console.log(nmapScan)
     return (
         <div style={{display: 'flex'}}>
             <form

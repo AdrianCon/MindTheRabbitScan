@@ -7,11 +7,11 @@ interface SelectProps {
 export default function Summary({data}: SelectProps){
     const {nmap, scan} = data;
     const {scaninfo, scanstats} = nmap;
-    console.log('nmap', nmap)
-    console.log('scan', scan)
+    // console.log('nmap', nmap)
+    // console.log('scan', scan)
     const entries = Object.entries(scan)
-    console.log('entries', entries)
-    console.log(entries?.[0]?.[1])
+    // console.log('entries', entries)
+    // console.log(entries?.[0]?.[1])
     return (
         <section className={'summary'}>
             <h1>{nmap.command_line}</h1>
