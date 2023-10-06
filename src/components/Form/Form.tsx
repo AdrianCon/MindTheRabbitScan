@@ -80,7 +80,7 @@ export default function Form() {
         };
         setIsLoading(true);
         setResult('');
-        fetch("http://143.198.65.227:5000/scan", requestOptions)
+        fetch("http://mindtherabbit.com/api/scan", requestOptions)
         .then(response => response.json())
         .then(result => {
             setResult(JSON.stringify(result,null,2))
