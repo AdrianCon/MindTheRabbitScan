@@ -7,19 +7,21 @@ $border-dark: rgba($base-color, 0.88);
 $royal-purple: #7C4C95;
 $asparagus: #65944C;
 $rose-quartz: #EAE4E6;
+// $rose-quartz: #E2DCCE;
 $red: #F12F26;
 $blue: #0952BB;
 $white: #E2DCCE;
-$black: #131418;
+// $black: #131418;
+$black: #000;
 
 body {
-    color: $white;
+    color: $rose-quartz;
     // background: $base-color;
     background: $black;
     // background: #E2DCCE;
     text-align: center;
     height: 100vh;
-    width: 97vw;
+    width: 100vw;
     display: flex;
     justify-content: center;
     margin: 0;
