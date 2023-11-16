@@ -19,8 +19,8 @@ const Flags = [
     {label: 'Reverse DNS lookup', value: '-sU', checked: false},
     {label: 'Fragment Data into 8 bytes', value: '-f', checked: false},
     {label: 'Fragment Data into 16 bytes', value: '-ff', checked: false},
-    {label: 'Verbose', value: '-v', checked: false},
-    {label: 'Very Verbose', value: '-vv', checked: false},
+    // {label: 'Verbose', value: '-v', checked: false},
+    // {label: 'Very Verbose', value: '-vv', checked: false},
 ]
 
 interface SelectProps {
