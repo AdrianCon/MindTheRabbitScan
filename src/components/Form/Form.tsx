@@ -8,6 +8,7 @@ import Code from '../Code/Code';
 import CheckBoxes from '../CheckBoxes/CheckBoxes';
 import Summary from '../Summary/Summary';
 import { Alert } from '@mui/material';
+import {isLocalHost, isPrivateIP} from '../../Utils/utils';
 
 interface nmap{
     ip_address: string;
@@ -60,9 +61,19 @@ export default function Form() {
 
     const handleScanEvent = (e: React.MouseEvent<HTMLButtonElement>) => {
         const validInput = validateInput(nmapScan.ip_address);
-        // console.log(validInput)
         if(!validInput) {
-            setError({value: true, message: 'Error - Not a domain, IP or IP range!'})
+            setError({value: true, message: 'Error - Not a domain or IP!'})
+            return
+        }
+        const PrivateIP = isPrivateIP(nmapScan.ip_address) 
+        if(PrivateIP) {
+            setError({value: true, message:"Error - The IP you're trying to scan is in a private address range!"})
+            return
+        }
+
+        const localHost = isLocalHost(nmapScan.ip_address);
+        if(localHost) {
+            setError({value: true, message:"Error - The IP you're trying to scan is in a loopback address range!"})
             return
         }
         var myHeaders = new Headers();
@@ -139,7 +150,7 @@ export default function Form() {
                 className='form'
                 onSubmit={e => e.preventDefault()}
             >
-                <div className='row' style={{width: '100%', flexWrap: 'wrap', gap: '20px', justifyContent: 'center', alignItems: 'center'}}>
+                <div className='row' style={{width: '100%', flexWrap: 'wrap', gap: '20px', justifyContent: 'center', alignItems: 'center',  zIndex: 1000}}>
                     <Input
                         placeholder="Enter IP or Domain to scan..."
                         value={nmapScan.ip_address}
