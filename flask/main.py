@@ -38,5 +38,6 @@ if __name__ == '__main__':
     #context = SSL.Context(SSL.SSLv23_METHOD)
     #context.use_privatekey_file('/etc/letsencrypt/live/mindtherabbit.com/privkey.pem')
     #context.use_certificate_file('/etc/letsencrypt/live/mindtherabbit.com/fullchain.pem')
-    context = ('/etc/letsencrypt/live/mindtherabbit.com/fullchain.pem','/etc/letsencrypt/live/mindtherabbit.com/privkey.pem')
-    app.run(host='0.0.0.0',debug=True, ssl_context=context)
+    # context = ('/etc/letsencrypt/live/mindtherabbit.com/fullchain.pem','/etc/letsencrypt/live/mindtherabbit.com/privkey.pem')
+    # app.run(host='0.0.0.0',debug=True, ssl_context=context)
+    app.run(host='0.0.0.0',debug=True)
