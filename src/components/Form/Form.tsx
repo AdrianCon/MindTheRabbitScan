@@ -56,7 +56,7 @@ export default function Form() {
         return () => {
           clearTimeout(timeId)
         }
-      }, [error]);
+      }, [error?.value]);
 
 
     const handleScanEvent = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -92,6 +92,7 @@ export default function Form() {
         setIsLoading(true);
         setResult('');
         fetch("https://mindtherabbit.com/api/scan", requestOptions)
+        // fetch("http://192.168.68.65:5000/api/scan", requestOptions)
         .then(response => response.json())
         .then(result => {
             setResult(JSON.stringify(result,null,2))

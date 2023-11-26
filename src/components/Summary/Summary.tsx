@@ -5,6 +5,14 @@ interface SelectProps {
 }
 
 export default function Summary({data}: SelectProps){
+    console.log(data);  
+    if (!data.nmap && data.error) {
+        return (
+            <section className={'summary'} style={{alignItems: 'center'}}>
+                <h1>{data?.error ?? 'Error'}</h1>
+            </section>
+        )
+    }
     const {nmap, scan} = data;
     const {scaninfo, scanstats} = nmap;
     // console.log('nmap', nmap)
